@@ -1,0 +1,6 @@
+train: C:\Users\Machine\Desktop\LadislavNagy\trenovanie_rtx4070ti_v6\tvorba_datasetu\data_na_trenovanie\data\train
+val: C:\Users\Machine\Desktop\LadislavNagy\trenovanie_rtx4070ti_v6\tvorba_datasetu\data_na_trenovanie\data\valid
+test: C:\Users\Machine\Desktop\LadislavNagy\trenovanie_rtx4070ti_v6\tvorba_datasetu\data_na_trenovanie\data\test
+
+nc: 9
+names: ['.', 'v', '^', '<', '>', '*', '+', 'x', 's']

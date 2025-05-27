@@ -1,6 +1,6 @@
 Toto je projekt, ktorý je zároveň aj mojou bakalárskou prácou: Aplikácia na detekciu karteziánskych súradnic na obrázku grafu.
 
-Priečonok trenovanie_yolo
+Priečinok trenovanie_yolo
 
     - obsahuje trénovací skript použitý pri trénovaní siete, 
     - súbor data.yaml, ktorý je potrebný pre správne trénovanie siete,

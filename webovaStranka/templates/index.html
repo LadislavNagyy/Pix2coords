@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="icon" href="/static/images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Pix2coords</title>
+</head>
+<body>
+    <div class="nazov">
+        <img src="/static/images/Pix2coords.png">
+        <h2>Aplikácia na detekciu karteziánskych súradníc grafu</h2>
+    </div>
+
+    <div class="navod">
+        <button class="akordeon">Aký obrázok vložiť?</button>
+        <div class="panel">
+            <div class="panel_content">
+                <ol>
+                    <li>Vložte digitálny obrázok grafu vo formáte .png, .jpg, alebo .jpeg s bielym pozadím.</li>
+                    <li>Obrázok musí obsahovať:
+                        <ol class="abcd">
+                            <li>dobre viditelné čísla pod osou x a naľavo od osi y, ktoré nie sú pootečené o uhol,</li>
+                            <li>údajovú časť výrazne ohraničenú 4 čiarami, v ktorej sa nachádzajú body,</li>
+                            <li>rozlišenie väčšie, ako 320 x 320 pixelov, ale zároveň menšie, ako 1000 x 1000px,</li>
+                            <li>biele pozadie grafu,</li>
+                            <li>čísla na osiach musia narastať lineárne.</li>
+                        </ol>
+                    </li>
+                    <li>Obrázok nesmie obsahovať:
+                        <ol class="abcd">
+                            <li>názov osí a grafu (ideálne je ich odstrániť v ďalšom programe),</li>
+                            <li>legendu, ani žiaden text v údajovej časti grafu,</li>
+                            <li>symboly, slová, alebo napríklad meny(€, $) pri číslach osí,</li>
+                            <li>vizuálne spojené znamieko '-' s číslo, pri ktorom sa nachádza,</li>
+                            <li>logaritmickú mierku.</li>
+                            <li>husto prekrývajúce sa body (klesá presnosť predickie pozície bodov),</li>
+                            <li>jedno číslo na osi, ktoré zároveň patrí dvom osiam.</li>
+                        </ol>
+                    </li>
+                    <div class="priklady">
+                        <img src="/static/images/priklad_grafu.png" id="prikladovy_graf">
+                        <p>Vzorová ukážka správneho typu grafu.</p>
+                        <img src="/static/images/priklad_bodov.png" id="priklad_bodov">
+                        <p>Vzorová ukážka správneho typu bodov na grafe.</p>
+                    </div>
+                </ol>
+            </div>
+        </div>
+
+        <button class="akordeon">Ako aplikácia funguje?</button>
+        <div class="panel">
+            <div class="panel_content">
+                <ol>
+                    <li>Rozpozanie pozície 4 čiar ohraničujúcich údajovú časť grafu.</li>
+                    <li>Detekcia pozície čísel osí.</li>
+                    <li>Rozpoznanie čísel na osi x a y.</li>
+                    <li>Výpočet rozsahu osí x a y.</li>
+                    <li>Mapovanie pixelových súradnic podľa rosahu osí.</li>
+                    <li>Detekcia bodov v údajovej časti grafu.</li>
+                    <li>Výpis detekovaných súradníc, možnosť stiahnutia .csv súbora.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="vlozenie_obrazka">
+        <h3>Vložte obrázok grafu</h3>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input value="Detegovať údaje" type="file" name="file" required>
+            <input type="submit" value="Detegovať údaje">
+        </form>
+    </div>
+
+    {% if chyba %}
+        <div  class="chyby">
+            <p style="color: red;">Chyba: {{ chyba }}</p>
+        </div>
+    {% endif %}
+
+    {% if result %}
+        <h1 class="nazov">Detegované údaje</h1>
+        <div class="detekovane_obrazky">
+            <img src="{{ obrazok_vlozeny }}" class="jednotlive_obrazky">
+            <img src="{{ url_for('static', filename='/processed_img/final.png') }}" class="jednotlive_obrazky">
+        </div>
+        <div class="rozsah_osi">
+            <p >Detegovaný rozsah osi x: ({{ cislo_lavej_x_kontury }} ; {{ cislo_pravej_x_kontury }}).</p>
+            <p >Detegovaný rozsah osi y: ({{ cislo_dolnej_y_kontury }} ; {{ cislo_hornej_y_kontury }}).</p>
+        </div>
+        <div class="suradnice">
+            <p> Súradnice bodov x: </p>
+            <pre style="overflow-x: auto; white-space: pre; border: 0px solid #ccc; padding: 3px; max-width: 100%;">
+                {{ suradnice_osx }}
+            </pre>
+            <p> Súradnice bodov y: </p>
+            <pre style="overflow-x: auto; white-space: pre; border: 0px solid #ccc; padding: 3px; max-width: 100%;">
+                {{ suradnice_osy }}    
+            </pre>
+            <a href="{{ url_for('static', filename='processed_img/suradnice_bodov.csv') }}" download="suradnice_bodov.csv">
+                <button class="csv_button">Stiahnuť .csv súbor</button>
+            </a>
+        </div>
+    {% endif %}
+
+    <script>
+        var acc = document.getElementsByClassName("akordeon");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+        });
+    }
+    </script>
+
+</body>
+</html>

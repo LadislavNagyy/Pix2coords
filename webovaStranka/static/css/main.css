@@ -1,0 +1,166 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+html, body{
+    height: 100%;
+    font-size: 16px;
+}
+
+.nazov{
+    text-align: center;
+    padding-top: 5vh;
+    /*background-color: #f3abab; */
+    width: 100% 
+}
+
+.chyby{
+    text-align: center;
+    margin: 2rem auto;
+    /*background-color: #ccc; */
+    width: 100% 
+}
+
+.navod{
+    /*background-color: #6e4646; */
+    width: 40%;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.akordeon {
+    text-align: left;
+    width: 100%;
+    margin: 0 auto;
+    
+    /*background-color: #eee;*/
+    color: #000000;
+    cursor: pointer;
+    padding: 2%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.3);
+}
+  
+.active, .akordeon:hover {
+    background-color: #ccc; 
+}
+
+.akordeon:after {
+    content: '\02795'; /* znak(+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+  
+.active:after {
+    content: "\2796"; /* znak (-) */
+}
+  
+.panel {
+    /*background-color: rgb(255, 179, 179);*/
+    width: 100%;
+    overflow: hidden;
+    display: none;
+}
+
+.panel_content {
+    /*background-color: rgb(110, 145, 183);*/
+    margin: 0 auto ;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+ol{
+    padding-left: 5%;
+    padding-top: 1%;
+}
+
+.abcd{
+    list-style-type: lower-alpha;
+}
+
+.priklady{
+    /*background-color: rgb(91, 42, 86);*/
+    text-align: center;
+    margin: 2% 0 2% 0;
+}
+
+#prikladovy_graf{
+    width: 55%;
+    height: auto;
+}
+
+#priklad_bodov{
+    width: 50%;
+    height: auto;
+}
+
+.vlozenie_obrazka {
+    /*background-color: rgb(177, 245, 219);*/
+    margin: 0 auto 4vh auto;
+    border-radius: 10px;
+    align-items: center;
+    border: 2px dashed #6890ee;
+    padding: 0.5vw;
+    width: 60vw;
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detekovane_obrazky{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15vw;
+    /*background-color: #f3abab; */
+}
+
+.jednotlive_obrazky{
+    max-width: 30vw;
+}
+
+.suradnice{
+    margin: 5vh 10vw 5vh 10vw;
+    padding-bottom: 5vh;
+    /*background-color: #f3abab; */
+}
+
+.csv_button{
+    padding: 1vh 0 1vh 0;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2vh auto 0 auto;
+    background-color: #76ecbf; 
+    width: 20% 
+}
+
+.csv_button:hover {
+    background-color: #57af8e; 
+}
+
+a{
+    text-decoration: none;
+}
+
+.rozsah_osi{
+    margin: 5vh 10vw 5vh 10vw;
+    text-align: center;
+}

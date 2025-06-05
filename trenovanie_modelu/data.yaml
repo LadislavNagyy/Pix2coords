@@ -1,0 +1,9 @@
+# cesty k obrázkom
+train: C:\Users\Machine\Desktop\LadislavNagy\trenovanie_rtx4070ti_v6\tvorba_datasetu\data_na_trenovanie\data\train
+val: C:\Users\Machine\Desktop\LadislavNagy\trenovanie_rtx4070ti_v6\tvorba_datasetu\data_na_trenovanie\data\valid
+test: C:\Users\Machine\Desktop\LadislavNagy\trenovanie_rtx4070ti_v6\tvorba_datasetu\data_na_trenovanie\data\test
+
+#počet tried
+nc: 9
+#zoznam názvov tried
+names: ['.', 'v', '^', '<', '>', '*', '+', 'x', 's']
